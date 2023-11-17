@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+
+<p>Information about book</p>
+
+<p th:text="${book.name}">name</p>
+<p th:text="${book.authorName}">author</p>
+<p th:text="${book.year}">year</p>
+<p th:text="'Owner is: ' + ${person.name}">text</p>
+<br/>
+
+<a th:href="@{/books/{id}/edit(id=${book.id})}">change book</a>
+
+<br/>
+<br/>
+
+<form th:method="POST" th:action="@{/books/{id}/change(id=${book.getId()})}">
+    <label for="per">Change your person</label>
+    <select th:object="${person}" th:field="*{id}" id="per">
+        <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}">name</option>
+    </select>
+
+    <input type="submit" value="Change!"/>
+</form>
+
+</body>
+</html>
